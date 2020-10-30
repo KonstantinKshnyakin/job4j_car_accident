@@ -19,8 +19,28 @@
     <title>Accident</title>
 </head>
 <body>
-<c:forEach var="user" items="${users}">
-    <p>${user}</p>
-</c:forEach>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Text</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="accident" items="${accidents}">
+        <tr>
+            <th>${accident.key}</th>
+            <th>${accident.value.name}</th>
+            <th>${accident.value.text}</th>
+            <th>${accident.value.address}</th>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<%--<c:forEach var="user" items="${users}">--%>
+<%--    <p>${user}</p>--%>
+<%--</c:forEach>--%>
 </body>
 </html>
