@@ -8,23 +8,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.car_accident.models.Accident;
 import ru.job4j.car_accident.service.AccidentService;
+import ru.job4j.car_accident.service.AccidentTypeService;
 
 @Controller
 public class AccidentControl {
 
     private final AccidentService accidentService;
+    private final AccidentTypeService accidentTypeService;
 
-    public AccidentControl(AccidentService accidentService) {
+    public AccidentControl(AccidentService accidentService, AccidentTypeService accidentTypeService) {
         this.accidentService = accidentService;
+        this.accidentTypeService = accidentTypeService;
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", accidentTypeService.getAll());
         return "accident/create";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
+        int typeId = accident.getType().getId();
+        accident.setType(accidentTypeService.findById(typeId));
         accidentService.save(accident);
         return "redirect:/";
     }

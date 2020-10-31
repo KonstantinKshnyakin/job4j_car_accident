@@ -27,16 +27,18 @@
         <th scope="col">Name</th>
         <th scope="col">Text</th>
         <th scope="col">Address</th>
+        <th scope="col">Type</th>
         <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="accident" items="${accidents}">
         <tr>
-            <th>${accident.id}</th>
+            <th scope="row">${accident.id}</th>
             <th>${accident.name}</th>
             <th>${accident.text}</th>
             <th>${accident.address}</th>
+            <th>${accident.type.name}</th>
             <td colspan='2'>
                 <form method='GET' action="<c:url value='/${accident.id}/edit'/>">
                     <button type="submit" class="btn-info">Изменить</button>

@@ -23,19 +23,29 @@
 <form method='POST' action="<c:url value='/save'/>">
     <div class="form-group">
         <label>Name
-        <input type="text" class="form-control" placeholder="Enter name" name="name">
+            <input type="text" class="form-control" placeholder="Enter name" name="name">
         </label>
     </div>
     <div class="form-group">
         <label>Text
-        <input type="text" class="form-control" placeholder="Enter text" name="text">
+            <input type="text" class="form-control" placeholder="Enter text" name="text">
         </label>
     </div>
     <div class="form-group">
         <label>Address
-        <input type="text" class="form-control" placeholder="Enter address" name="address">
+            <input type="text" class="form-control" placeholder="Enter address" name="address">
         </label>
     </div>
+    <label>Тип
+        <select class="custom-select mr-sm-2" name="type.id">
+            <option selected>Выберите...</option>
+            <c:forEach var="type" items="${types}">
+                <option value="${type.id}">${type.name}</option>
+                <%--                <option value="${type.id}">${type.name}</option>--%>
+            </c:forEach>
+        </select>
+    </label>
+    <br/>
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 <br/>

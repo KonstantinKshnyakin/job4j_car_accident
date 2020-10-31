@@ -8,6 +8,7 @@ public class Accident {
     private String name;
     private String text;
     private String address;
+    private AccidentType type;
 
     public Accident() {
 
@@ -52,6 +53,14 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Accident{"
@@ -59,6 +68,7 @@ public class Accident {
                 + ", name='" + name + '\''
                 + ", text='" + text + '\''
                 + ", address='" + address + '\''
+                + ", type='" + type + '\''
                 + '}';
     }
 
@@ -82,6 +92,9 @@ public class Accident {
         if (!Objects.equals(text, accident.text)) {
             return false;
         }
+        if (!Objects.equals(type, accident.type)) {
+            return false;
+        }
         return Objects.equals(address, accident.address);
     }
 
@@ -91,6 +104,7 @@ public class Accident {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
     }
 }

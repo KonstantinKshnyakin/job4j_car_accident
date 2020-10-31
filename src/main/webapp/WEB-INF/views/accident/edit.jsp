@@ -22,7 +22,7 @@
 
 <form method='POST' action="<c:url value='/update'/>">
     <div class="form-group">
-        <label>Name
+        <label>
             <input type="text" hidden name="id" value="${accident.id}">
         </label>
     </div>
