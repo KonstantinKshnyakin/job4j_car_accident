@@ -20,36 +20,33 @@
 </head>
 <body>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Text</th>
-        <th scope="col">Address</th>
-        <th scope="col">Edit</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="accident" items="${accidents}">
-        <tr>
-            <th>${accident.id}</th>
-            <th>${accident.name}</th>
-            <th>${accident.text}</th>
-            <th>${accident.address}</th>
-            <td colspan='2'>
-                <form method='GET' action="<c:url value='/${accident.id}/edit'/>">
-                    <button type="submit" class="btn-info">Изменить</button>
-                </form>
-            </td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<form method='POST' action="<c:url value='/update'/>">
+    <div class="form-group">
+        <label>Name
+            <input type="text" hidden name="id" value="${accident.id}">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Name
+        <input type="text" class="form-control" placeholder="${accident.name}" name="name" value="${accident.name}">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Text
+        <input type="text" class="form-control" placeholder="${accident.text}" name="text" value="${accident.text}">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Address
+            <input type="text" class="form-control" placeholder="${accident.address}" name="address" value="${accident.address}">
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+<br/>
 
-
-<form method='GET' action="<c:url value='/create'/>">
-    <button type="submit" class="btn btn-primary">Добавить инцидент</button>
+<form method='GET' action="<c:url value='/'/>">
+    <button type="submit" class="btn btn-primary">Вернутся</button>
 </form>
 
 </body>

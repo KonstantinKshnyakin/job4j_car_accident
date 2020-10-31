@@ -5,6 +5,7 @@ import ru.job4j.car_accident.models.Accident;
 import ru.job4j.car_accident.repository.AccidentMem;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class AccidentService {
@@ -15,11 +16,18 @@ public class AccidentService {
         this.accidentMem = accidentMem;
     }
 
-    public void add(Accident accident) {
-        accidentMem.add(accident);
+    public void save(Accident accident) {
+        accidentMem.save(accident);
     }
 
-    public HashMap<Integer, Accident> getAllAccidents() {
+    public List<Accident> getAllAccidents() {
         return accidentMem.getAllAccidents();
+    }
+    public Accident findById(int id) {
+        return accidentMem.findById(id);
+    }
+
+    public void update(Accident accident) {
+        accidentMem.update(accident);
     }
 }

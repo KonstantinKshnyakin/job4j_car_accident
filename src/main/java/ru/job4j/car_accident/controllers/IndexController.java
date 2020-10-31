@@ -5,8 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.car_accident.service.AccidentService;
 
-import java.util.ArrayList;
-
 @Controller
 public class IndexController {
 
