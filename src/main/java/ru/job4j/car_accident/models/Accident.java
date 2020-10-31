@@ -1,6 +1,7 @@
 package ru.job4j.car_accident.models;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
 
@@ -9,16 +10,23 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
+    private Set<Rule> rules;
 
     public Accident() {
 
     }
 
-    public Accident(int id, String name, String text, String address) {
-        this.id = id;
-        this.name = name + "_Name";
-        this.text = text + "_Text";
-        this.address = address + "_Address";
+    public static Accident of(int id, String name,
+                              String text, String address,
+                              AccidentType type, Set<Rule> rules) {
+        Accident accident = new Accident();
+        accident.id = id;
+        accident.name = name + "_Name";
+        accident.text = text + "_Text";
+        accident.address = address + "_Address";
+        accident.type = type;
+        accident.rules = rules;
+        return accident;
     }
 
     public int getId() {
@@ -61,6 +69,14 @@ public class Accident {
         this.type = type;
     }
 
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public String toString() {
         return "Accident{"
@@ -69,6 +85,7 @@ public class Accident {
                 + ", text='" + text + '\''
                 + ", address='" + address + '\''
                 + ", type='" + type + '\''
+                + ", rules='" + rules + '\''
                 + '}';
     }
 
@@ -95,6 +112,9 @@ public class Accident {
         if (!Objects.equals(type, accident.type)) {
             return false;
         }
+        if (!Objects.equals(rules, accident.rules)) {
+            return false;
+        }
         return Objects.equals(address, accident.address);
     }
 
@@ -105,6 +125,7 @@ public class Accident {
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (rules != null ? rules.hashCode() : 0);
         return result;
     }
 }

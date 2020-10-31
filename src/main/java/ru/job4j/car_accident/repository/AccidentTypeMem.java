@@ -9,37 +9,37 @@ import java.util.List;
 @Repository
 public class AccidentTypeMem implements MemStore<AccidentType> {
 
-    private static int ACCIDENT_COUNTER;
-    private final HashMap<Integer, AccidentType> accidentType;
+    private static int ACCIDENT_TYPE_COUNTER;
+    private final HashMap<Integer, AccidentType> accidentTypes;
 
     {
-        accidentType = new HashMap<>();
-        String acc1s = String.valueOf(++ACCIDENT_COUNTER);
-        accidentType.put(ACCIDENT_COUNTER, AccidentType.of(ACCIDENT_COUNTER, "Две машины"));
-        String acc2s = String.valueOf(++ACCIDENT_COUNTER);
-        accidentType.put(ACCIDENT_COUNTER, AccidentType.of(ACCIDENT_COUNTER, "Машина и человек"));
-        String acc3s = String.valueOf(++ACCIDENT_COUNTER);
-        accidentType.put(ACCIDENT_COUNTER, AccidentType.of(ACCIDENT_COUNTER, "Машина и велосипед"));
+        accidentTypes = new HashMap<>();
+        accidentTypes.put(++ACCIDENT_TYPE_COUNTER,
+                AccidentType.of(ACCIDENT_TYPE_COUNTER, "Две машины"));
+        accidentTypes.put(++ACCIDENT_TYPE_COUNTER,
+                AccidentType.of(ACCIDENT_TYPE_COUNTER, "Машина и человек"));
+        accidentTypes.put(++ACCIDENT_TYPE_COUNTER,
+                AccidentType.of(ACCIDENT_TYPE_COUNTER, "Машина и велосипед"));
     }
 
     @Override
     public void save(AccidentType accidentType) {
-        accidentType.setId(++ACCIDENT_COUNTER);
-        this.accidentType.put(ACCIDENT_COUNTER, (accidentType));
+        accidentType.setId(++ACCIDENT_TYPE_COUNTER);
+        accidentTypes.put(ACCIDENT_TYPE_COUNTER, accidentType);
     }
 
     @Override
     public List<AccidentType> getAll() {
-        return List.copyOf(accidentType.values());
+        return List.copyOf(accidentTypes.values());
     }
 
     @Override
     public AccidentType findById(int id) {
-        return accidentType.get(id);
+        return accidentTypes.get(id);
     }
 
     @Override
     public void update(AccidentType accidentType) {
-        this.accidentType.put(accidentType.getId(), accidentType);
+        this.accidentTypes.put(accidentType.getId(), accidentType);
     }
 }

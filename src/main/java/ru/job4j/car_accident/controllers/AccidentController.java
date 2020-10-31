@@ -9,28 +9,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.car_accident.models.Accident;
 import ru.job4j.car_accident.service.AccidentService;
 import ru.job4j.car_accident.service.AccidentTypeService;
+import ru.job4j.car_accident.service.RuleService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class AccidentControl {
+public class AccidentController {
 
     private final AccidentService accidentService;
     private final AccidentTypeService accidentTypeService;
+    private final RuleService ruleService;
 
-    public AccidentControl(AccidentService accidentService, AccidentTypeService accidentTypeService) {
+    public AccidentController(AccidentService accidentService,
+                              AccidentTypeService accidentTypeService,
+                              RuleService ruleService) {
         this.accidentService = accidentService;
         this.accidentTypeService = accidentTypeService;
+        this.ruleService = ruleService;
     }
 
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("types", accidentTypeService.getAll());
+        model.addAttribute("rules", ruleService.getAll());
         return "accident/create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident) {
+    public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
+        String[] rulesIds = req.getParameterValues("rIds");
         int typeId = accident.getType().getId();
+
         accident.setType(accidentTypeService.findById(typeId));
+        accident.setRules(ruleService.findListByIds(rulesIds));
+
         accidentService.save(accident);
         return "redirect:/";
     }

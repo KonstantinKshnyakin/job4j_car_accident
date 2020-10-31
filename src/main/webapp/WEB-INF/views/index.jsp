@@ -28,6 +28,7 @@
         <th scope="col">Text</th>
         <th scope="col">Address</th>
         <th scope="col">Type</th>
+        <th scope="col">Rule</th>
         <th scope="col">Edit</th>
     </tr>
     </thead>
@@ -39,6 +40,11 @@
             <th>${accident.text}</th>
             <th>${accident.address}</th>
             <th>${accident.type.name}</th>
+            <th>
+                <c:forEach var="rule" items="${accident.rules}">
+                    <span class="badge badge-warning">${rule.name}</span>
+                </c:forEach>
+            </th>
             <td colspan='2'>
                 <form method='GET' action="<c:url value='/${accident.id}/edit'/>">
                     <button type="submit" class="btn-info">Изменить</button>

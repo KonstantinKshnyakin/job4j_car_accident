@@ -36,15 +36,26 @@
             <input type="text" class="form-control" placeholder="Enter address" name="address">
         </label>
     </div>
-    <label>Тип
-        <select class="custom-select mr-sm-2" name="type.id">
-            <option selected>Выберите...</option>
-            <c:forEach var="type" items="${types}">
-                <option value="${type.id}">${type.name}</option>
-                <%--                <option value="${type.id}">${type.name}</option>--%>
-            </c:forEach>
-        </select>
-    </label>
+    <div>
+        <label>Тип
+            <select class="custom-select mr-sm-2" name="type.id">
+                <option selected>Выберите...</option>
+                <c:forEach var="type" items="${types}">
+                    <option value="${type.id}">${type.name}</option>
+                    <%--                <option value="${type.id}">${type.name}</option>--%>
+                </c:forEach>
+            </select>
+        </label>
+    </div>
+    <div>
+        <label>Статьи:
+            <select name="rIds" multiple class="form-control">
+                <c:forEach var="rule" items="${rules}">
+                    <option value="${rule.id}">${rule.name}</option>
+                </c:forEach>
+            </select>
+        </label>
+    </div>
     <br/>
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
